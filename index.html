@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Kyara’s World -->
+  <title>Kyara’s World</title>
+  <meta name="description" content="Kyara’s World — art, commissions, and everything Kyara.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="wordmark" href="index.html">Kyara’s&nbsp;World</a>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="commissions.html">Commissions</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-kicker">Welcome to</p>
+      <h1 class="hero-title">Kyara’s World</h1>
+      <!-- EDIT: One sentence about Kyara's practice -->
+      <p class="hero-sub">Scroll down and walk through the studio — every piece is hers.</p>
+    </section>
+
+    <!--
+      GALLERY
+      To add a piece: copy one <figure> block, change the image path,
+      the alt text, the title, and the details line.
+      Put image files in the images/ folder. Use .jpg or .webp, ~1600px wide max.
+    -->
+    <section class="gallery" id="gallery">
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-1.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 1</h2>
+          <p>Oil on canvas · 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-2.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 2</h2>
+          <p>Gouache on paper · 2026</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-3.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 3</h2>
+          <p>Digital · 2025</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-4.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 4</h2>
+          <p>Ink &amp; watercolor · 2025</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-5.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 5</h2>
+          <p>Acrylic on wood panel · 2025</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <button class="piece-frame" data-lightbox>
+          <img src="images/placeholder-6.svg" alt="Describe the artwork here" loading="lazy">
+        </button>
+        <figcaption>
+          <h2>Untitled No. 6</h2>
+          <p>Mixed media · 2024</p>
+        </figcaption>
+      </figure>
+
+    </section>
+  </main>
+
+  <!-- Lightbox (click any artwork to open, Esc or click outside to close) -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img src="" alt="" id="lightboxImg">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <footer class="site-footer">
+    <!-- EDIT: Update links. Delete any she doesn't use. -->
+    <div class="footer-links">
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@example.com">Email</a>
+      <a href="commissions.html">Commissions</a>
+    </div>
+    <p class="footer-note">© <span id="year"></span> Kyara. All artwork belongs to the artist.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
