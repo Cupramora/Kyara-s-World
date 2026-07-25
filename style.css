@@ -1,0 +1,377 @@
+/* ============================================================
+   Artist portfolio — single stylesheet, no build tools needed.
+
+   QUICK THEME EDIT: change the colors below and the whole
+   site follows. Everything else is layout you can leave alone.
+   ============================================================ */
+
+:root {
+  --bg: #0e0a0c;          /* page background (near-black, wine tinted) */
+  --ink: #e8e0e2;         /* main text (bone) */
+  --muted: #8f8188;       /* secondary text */
+  --accent: #b3122a;      /* links, buttons (blood red) */
+  --accent-soft: #2a1418; /* soft accent backgrounds */
+  --card: #191216;        /* artwork frame background */
+  --mist: 179, 18, 42;    /* blood mist color (RGB, used at low opacity) */
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* ---------- Blood mist ----------
+   A fixed, non-interactive layer of soft red mist scattered
+   across the page. Pure CSS — tweak or delete freely.
+   To make it stronger/weaker, adjust the alpha values below. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38rem 24rem at 85% -5%,  rgba(var(--mist), 0.14), transparent 65%),
+    radial-gradient(28rem 30rem at -8% 30%,  rgba(var(--mist), 0.10), transparent 60%),
+    radial-gradient(20rem 16rem at 70% 55%,  rgba(var(--mist), 0.07), transparent 60%),
+    radial-gradient(30rem 22rem at 15% 95%,  rgba(var(--mist), 0.12), transparent 65%),
+    radial-gradient(10rem 8rem  at 45% 20%,  rgba(var(--mist), 0.05), transparent 70%);
+}
+
+/* fine droplets — a sparse speckle over the mist */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(2px 2px at 12% 18%, rgba(var(--mist), 0.5), transparent 100%),
+    radial-gradient(1.5px 1.5px at 78% 12%, rgba(var(--mist), 0.45), transparent 100%),
+    radial-gradient(2.5px 2.5px at 88% 42%, rgba(var(--mist), 0.35), transparent 100%),
+    radial-gradient(1.5px 1.5px at 30% 64%, rgba(var(--mist), 0.4), transparent 100%),
+    radial-gradient(2px 2px at 60% 82%, rgba(var(--mist), 0.45), transparent 100%),
+    radial-gradient(1px 1px at 42% 38%, rgba(var(--mist), 0.5), transparent 100%),
+    radial-gradient(2px 2px at 8% 88%, rgba(var(--mist), 0.4), transparent 100%),
+    radial-gradient(1.5px 1.5px at 94% 74%, rgba(var(--mist), 0.45), transparent 100%);
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; }
+
+/* ---------- Header ---------- */
+
+.site-header {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.wordmark:hover { text-decoration: none; color: var(--accent); }
+
+.site-nav { display: flex; gap: 1.75rem; }
+
+.site-nav a {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: var(--ink); text-decoration: none; }
+.site-nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* Mobile menu button */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span {
+  width: 22px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 2.5rem;
+  text-align: center;
+}
+.hero-small { padding-bottom: 1rem; }
+
+.hero-kicker {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin-bottom: 0.75rem;
+}
+
+.hero-sub {
+  color: var(--muted);
+  font-size: 1.1rem;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+/* ---------- Gallery ---------- */
+
+/* Studio scroll: one piece at a time, hung like work on a wall.
+   Images keep their natural shape — no cropping. */
+.gallery {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+.piece { text-align: center; }
+
+.piece-frame {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 14px;                       /* the "frame" */
+  background: var(--card);
+  border: 1px solid rgba(232, 224, 226, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: zoom-in;
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.6),
+    0 0 90px rgba(var(--mist), 0.08);  /* faint red spotlight glow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.piece-frame:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    0 0 110px rgba(var(--mist), 0.16);
+}
+
+.piece-frame img {
+  width: 100%;
+  height: auto;          /* natural aspect ratio — no cropping */
+  border-radius: 2px;
+}
+
+.piece figcaption { padding: 1.1rem 0.25rem 0; }
+.piece figcaption h2 { font-size: 1.25rem; }
+.piece figcaption p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* thin divider between pieces, like moving to the next wall */
+.piece + .piece::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 1px;
+  margin: -2.75rem auto 2.75rem;
+  background: rgba(var(--mist), 0.45);
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(30, 24, 20, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.lightbox[hidden] { display: none; }
+
+.lightbox img {
+  max-width: min(90vw, 900px);
+  max-height: 80vh;
+  border-radius: 6px;
+}
+
+.lightbox-caption { color: #e9ded3; margin-top: 1rem; font-size: 0.95rem; }
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem; right: 1.25rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---------- Generic page & about ---------- */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3rem;
+  align-items: start;
+  padding-top: 2rem;
+}
+
+.about-photo img {
+  border-radius: 12px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  width: 100%;
+}
+
+.about-text h1 { font-size: clamp(1.9rem, 4vw, 2.75rem); margin-bottom: 1rem; }
+.about-text p { margin-bottom: 1rem; max-width: 38rem; }
+
+.about-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: filter 0.15s ease;
+}
+.button:hover { filter: brightness(1.08); text-decoration: none; }
+
+.button-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+/* ---------- Commissions ---------- */
+
+.tiers {
+  max-width: var(--max-width);
+  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.tier {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+.tier h2 { font-size: 1.2rem; margin-bottom: 0.25rem; }
+.tier-price {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.tier p:last-child { color: var(--muted); font-size: 0.95rem; }
+
+.commission-notes { max-width: 40rem; margin: 3rem auto 0; }
+.commission-notes h2 { font-size: 1.35rem; margin: 2rem 0 0.75rem; }
+.commission-notes ol,
+.commission-notes ul { padding-left: 1.4rem; }
+.commission-notes li { margin-bottom: 0.5rem; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid rgba(232, 224, 226, 0.12);
+  margin-top: 2rem;
+  padding: 2.5rem 1.25rem 3rem;
+  text-align: center;
+}
+
+.footer-links { display: flex; justify-content: center; gap: 1.75rem; margin-bottom: 0.9rem; }
+.footer-links a { color: var(--ink); font-weight: 500; font-size: 0.95rem; }
+.footer-links a:hover { color: var(--accent); }
+
+.footer-note { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 820px) {
+  .gallery { gap: 4rem; }
+  .tiers { grid-template-columns: 1fr; max-width: 26rem; }
+  .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .about-photo { max-width: 22rem; }
+}
+
+@media (max-width: 560px) {
+  .nav-toggle { display: flex; }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: var(--bg);
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.25rem 0 1.5rem;
+    border-bottom: 1px solid rgba(232, 224, 226, 0.12);
+    z-index: 40;
+  }
+  .site-nav.open { display: flex; }
+
+  .site-header { position: relative; }
+}

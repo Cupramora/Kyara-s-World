@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#150f14"/>
+  <circle cx="400" cy="420" r="180" fill="#8e2c3c" opacity="0.7"/>
+  <circle cx="560" cy="260" r="26" fill="#8e2c3c" opacity="0.35"/>
+  <circle cx="250" cy="620" r="14" fill="#8e2c3c" opacity="0.3"/>
+  <rect x="150" y="660" width="500" height="16" rx="8" fill="#8e2c3c" opacity="0.35"/>
+  <rect x="230" y="705" width="340" height="12" rx="6" fill="#8e2c3c" opacity="0.2"/>
+  <text x="400" y="890" font-family="Georgia, serif" font-size="34" fill="#8e2c3c" opacity="0.8" text-anchor="middle">Your artwork here</text>
+</svg>
